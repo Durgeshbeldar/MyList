@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaSTsC5nOIQ1zF+xBfNE5brA8s0zLpkWzqAXb5CtBqIC8hx+z8gEJhW2DjOd+fZsPY1N0HeTmtzX8KXxqDCJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="col-12">
+        <section class="pdf-section" id="listDetails">
+<!-- Javascript code is here  -->
+        </section>
+        <section>
+            <div class="btn-section" style="display: flex; justify-content: center; width: 100%;">
+                <button type="button" class="mt-3 next-btn5" style="margin: 10px 0px !important;"
+                    onclick="captureAndSave()">PRINT</button>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+
+    <script>
+
+let userName = '';
+let mobileNo = '';
+function loadDetails() {
+    userName = localStorage.getItem('userName') || '';
+    mobileNo = localStorage.getItem('mobileNo') || '';
+    console.log(userName);
+}
+loadDetails();
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        
+        function loadCustomerDetails() {
+            const customerId = parseInt(getQueryParameter('id'));
+            const customerList = JSON.parse(localStorage.getItem('customerList')) || [];
+            const customer = customerList.find(c => c.id === customerId);
+            let pdfSection = document.querySelector('.pdf-section');
+            if(customer.products.length < 10){
+                pdfSection.style.height = '80vh';
+            }
+            if(customer.products.length > 14){
+                pdfSection.style.height = 'auto';
+            }
+            if (customer) {
+                document.getElementById('listDetails').innerHTML = `
+                
+           
+
+            <section class="pdf-header">
+                <div class="logo-img"><img src="images/LOGO.jpg" alt="" class="l-img"></div>
+                <div class="invoice-div">
+                    <p class="invoice-title">INVOICE NO</p>
+                    <p class=invoice-no>#${customer.id}</p>
+                </div>
+            </section>
+            <section class="line">
+
+            </section>
+            <section class="list-info">
+                <div class="info-box">
+                    <div class="text-box">
+                        <p class="details-text">Customer Name</p>
+                        <p class="normal-text">${customer.customerName}</p>
+                    </div>
+                    <div class="text-box">
+                        <p class="details-text">Address</p>
+                        <p class="normal-text">${customer.Place}</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="text-box">
+                        <p class="details-text1">Technician</p>
+                        <p class="normal-text1">${userName}</p>
+                    </div>
+                    <div class="text-box">
+                        <p class="details-text1">Mobile No</p>
+                        <p class="normal-text1">${mobileNo}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="line2">
+                <p class="line2-l">Work Field - ${customer.field}</p>
+                <p class="line2-r">${customer.dateandtime} : D & T</p>
+            </section>
+
+            <section class="main-list">
+                <section class="mainlist-row">
+                    <div class="lh1">
+                        <p class="lh-title">No.</p>
+                    </div>
+                    <div class="lh2">
+                        <p class="lh-title">Product Name</p>
+                    </div>
+                    <div class="lh3">
+                        <p class="lh-title">Price</p>
+                    </div>
+                    <div class="lh4">
+                        <p class="lh-title">Qty</p>
+                    </div>
+                    
+                </section>
+                <section class="main-list-data">
+                    ${customer.products.map((product,index) =>`
+                        <section class="data-row">
+                    <div class="llist1">
+                        <p class="lh-title2" style="padding-left: 12px !important;">${index +1}</p>
+                    </div>
+                    <div class="llist2">
+                        <p class="lh-title2">${product.name}</p>
+                    </div>
+                    <div class="llist3">
+                        <p class="lh-title2"></p>
+                    </div>
+                    <div class="llist4">
+                        <p class="lh-title2" style="padding-left: 15px !important;">${product.quantity}</p>
+                    </div>
+                    
+                    </section>
+                        
+                        `).join('')}
+                       
+                </section>
+            </section>
+            
+            <section class="line3">
+                <div ></div>
+            </section>
+
+                 
+                `;
+            } else {
+                document.getElementById('customerDetails').innerHTML = '<p>list not found.</p>';
+            }
+        }
+        function captureAndSave() {
+            html2canvas(document.querySelector('.pdf-section')).then(canvas => {
+                let image = canvas.toDataURL('image/png');
+                saveAsImage(image);
+            });
+        }
+
+        function saveAsImage(data) {
+            let a = document.createElement('a');
+            a.href = data;
+            a.download = 'pdf-section-image.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        document.addEventListener('DOMContentLoaded', loadCustomerDetails);
+
+    </script>
+</body>
+
+</html>

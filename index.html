@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>List Maker</title>
+
+</head>
+
+<body>
+    <section class="header col-12 shadow">
+        <div class="h-img"><img src="images/LOGO.jpg" alt=""></div>
+        </div>
+    </section>
+
+    <section>
+        <marquee behavior="scroll" direction="row" scrollamount="5"
+        class="instructions py-2 mt-1">Hello, Technicians This Web App is Made for You, Please Update Your Details and Make Your Product Lists Here For Your Valuable Customers.
+    </marquee>
+    </section>
+
+    
+
+
+
+
+
+
+    <section class="collapse-section col-12">
+        <div class="sub-c shadow3" id="addProductTab">
+            <p>Add New Product</p>
+        </div>
+        <div class="sub-c shadow3" id="createListTab">
+            <p>Create List</p>
+        </div>
+    </section>
+    <section class="main-section col-12" id="addProductSection" style="display: none;">
+        <div class="createList">
+            <p>Add Your Product</p>
+        </div>
+        <div class="Work-field shadow3">
+            <select name="Work-field" id="Work-field">
+                <option value="">Select Work Field</option>
+                <option value="Casing Fitting">Casing Fitting</option>
+                <option value="Council Fitting">Council Fitting</option>
+                <option value="Plumbing Item List">Plumbing Item List</option>
+                <option value="Electric Item List">Electric Item List</option>
+            </select>
+        </div>
+        <div class="input-container shadow3">
+            <input type="text" id="productName" class="input-field" placeholder=" ">
+            <label for="productName" class="input-label">Enter Product Name</label>
+        </div>
+        <div class="btn-section">
+            <button type="button" class="mt-3 add-btn" onclick="addProduct()">Add New Product</button>
+        </div>
+    </section>
+
+    <section class="col-12" id="createListSection">
+        <section class="createList-section">
+            <div class="createList">
+                <p>Create Your List</p>
+            </div>
+            <div class="Work-field shadow3">
+                <select name="field" id="field">
+                    <option value="">Select Work Field</option>
+                    <option value="Casing Fitting">Casing Fitting</option>
+                    <option value="Council Fitting">Council Fitting</option>
+                    <option value="Plumbing Item List">Plumbing Item List</option>
+                    <option value="Electric Item List">Electric Item List</option>
+                </select>
+            </div>
+            <div class="input-container shadow3">
+                <input type="text" id="CustomerName" class="input-field" placeholder=" ">
+                <label for="CustomerName" class="input-label">Customer Name</label>
+            </div>
+            <div class="input-container shadow3">
+                <input type="text" id="Place" class="input-field" placeholder=" ">
+                <label for="Place" class="input-label">Location</label>
+            </div>
+            <div class="btn-section">
+                <button type="button" class="mt-3 next-btn" style="margin-top: 0px !important;"
+                    onclick="showNextSection(event)">Next</button>
+            </div>
+        </section>
+        <section class="addProductSection" style="display: none;">
+            <div class="createList">
+                <p>Add Product to Your List</p>
+            </div>
+            <div class="Work-field shadow3">
+                <select name="product-list" id="product-list">
+                    <option value="">Select Product</option>
+                </select>
+            </div>
+            <div class="input-container shadow3">
+                <input type="text" id="ProductQuantity" class="input-field" placeholder=" ">
+                <label for="ProductQuantity" class="input-label">Quantity</label>
+            </div>
+            <div class="btn-section">
+                <button type="button" class="mt-3 next-btn" style="margin-top: 0px !important;"
+                    onclick="addProductToList()">Add Product To List</button>
+            </div>
+        </section>
+    </section>
+    <!-- Display List  -->
+    <section class="displayList col-12" id="myListSection" style="display: none;">
+        <div class="createList">
+            <p>Product List</p>
+        </div>
+        <section class="list-table ">
+            <div class="table-head">
+                <div class="th-div" id="th-div1">
+                    <p class="th-title">No.</p>
+                </div>
+                <div class="th-div" id="th-div2">
+                    <p class="th-title">Product | Item Name</p>
+                </div>
+                <div class="th-div" id="th-div3">
+                    <p class="th-title">Qty</p>
+                </div>
+                <div class="th-div" id="th-div4">
+                    <p class="th-title">Del</p>
+                </div>
+            </div>
+            <div id="listContainer">
+
+                <!-- Javascript code is here  -->
+
+            </div>
+            <div>
+
+            </div>
+        </section>
+
+        <div class="btn-section">
+            <button type="button" class="mt-3 next-btn" style="margin-top: 0px !important;"
+                onclick="completeList()">Complete List</button>
+        </div>
+    </section>
+
+
+
+
+   <section class="customerList-section">
+    <div class="createList" onclick="toggleMyList()" id="toggleButton">
+        <p>Show My Customer List</p>
+    </div>
+   </section>
+
+    <section class="col-12 customerList-section" id="myList" style="display: none;">
+        
+        <section class="customerList">
+            <div class="cList">
+                <div class="Clist-head" id="Clist1">
+                    <p class="c-title">No.</p>
+                </div>
+                <div class="Clist-head" id="Clist2">
+                    <p class="c-title">Customer Name</p>
+                </div>
+                <div class="Clist-head" id="Clist3">
+                    <p class="c-title">View</p>
+                </div>
+                <div class="Clist-head" id="Clist4">
+                    <p class="c-title">Del</p>
+                </div>
+            </div>
+            <div id="customerDetails">
+
+                <!-- Javascript code is here  -->
+            </div>
+        </section>
+
+    </section>
+
+    <!-- =============================Update electrician details ================== -->
+    <section class="customerList-section">
+        <div class="createList" onclick="toggleUpdate()" id="toggleUpdateBtn">
+            <p>Click Here To Update Your Details</p>
+        </div>
+    </section>
+    <section class="update-section" id="update" style="display: none;">
+        <div class="input-container shadow3">
+            <input type="text" id="electricianName" class="input-field" placeholder=" ">
+            <label for="electrician" class="input-label">Full Name</label>
+        </div>
+        <div class="input-container shadow3">
+            <input type="text" id="mobileNo" class="input-field" placeholder=" ">
+            <label for="mobileNo" class="input-label">Mobile No : 1234512345</label>
+        </div>
+        <div class="btn-section">
+            <button type="button" class="mt-3 next-btn" style="margin-top: 0px !important;"
+                onclick="updateDetails()">Update Your Details</button>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
