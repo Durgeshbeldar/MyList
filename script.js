@@ -45,6 +45,11 @@ function updateDetails() {
     alert('Your details have been updated successfully.');
 }
 
+function productListOnNewPage(){
+    window.location.href = 'productList.html';
+
+}
+
 function toggleMyList() {
     const myListSection = document.getElementById('myList');
     const toggleButton = document.getElementById('toggleButton').querySelector('p');
@@ -206,7 +211,7 @@ function displayProductList() {
                 
             <div class="td-div1" ><p class="td-text">${index +1}</p></div>
             <div class="td-div2" ><p class="td-text">${item.name}</p></div>
-            <div class="td-div3" ><p class="td-text">${item.quantity}</p></div>
+            <div class="td-div3" onclick="editQuantity(${index}, '${item.quantity}')" ><p class="td-text">${item.quantity}</p></div>
             <div class="td-div4" onclick="deleteProduct(${index})"><p class="td-text">Del</p></div>
             </div>
         `;
@@ -214,6 +219,14 @@ function displayProductList() {
     });
     
    
+}
+function editQuantity(index, currentQuantity) {
+    const newQuantity = prompt('Enter new quantity:', currentQuantity); // Show a prompt with current quantity
+    if (newQuantity !== null) {
+        // If user entered a new quantity and didn't cancel
+        list[index].quantity = newQuantity; // Update the quantity in the list array
+        displayProductList(); // Redisplay the updated list
+    }
 }
 function deleteProduct(index) {
     // Remove the product at the specified index from the list array
