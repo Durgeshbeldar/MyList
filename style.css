@@ -707,3 +707,109 @@ margin-top: auto;
 }
 
 
+
+/* ======================== Product List page  */
+
+.productList-page{
+  width: 100%;
+  margin: 15px 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.productList-page1{
+  width: 93%;
+  
+  margin: 15px auto;
+  padding: 10px 3px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+
+
+.products-list-heading{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #383838;
+ 
+}
+.ih-title{
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: whitesmoke;
+  padding: 5px 0px 5px 15px;
+  text-align: left;
+}
+.no-product{
+  padding: 5px 0px ;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgb(111, 6, 6);
+}
+.ih1{
+  width: 15%;
+}
+.ih2{
+  width: 65%;
+}
+.ih3{
+  width: 20%;
+}
+.products-list-data{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ 
+  border-bottom: 1px solid black;
+}
+.data-cell{
+  display: flex;
+  border-bottom: 1px solid black;
+}
+.ih-title1{
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 0px 5px 20px;
+  text-align: left;
+  
+}
+.ihd1{
+  width: 15%;
+}
+.ihd2{
+  width: 65%;
+}
+.ihd3{
+  width: 20%;
+}
+.ihd3 > div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.del1{
+  font-size: 12px !important;
+  margin-top: 5px;
+  color: rgb(155, 75, 0);
+  text-align: center;
+}
+.normal-heading{
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 2px;
+  color: green;
+  text-transform:capitalize;
+}
