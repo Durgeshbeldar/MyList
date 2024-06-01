@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
         createListSection.style.display = 'flex';
     });
 });
-
+function homePage(){
+    window.location.href = 'index.html';
+}
 // Global variables
 let userName = '';
 let mobileNo = '';
@@ -47,6 +49,10 @@ function updateDetails() {
 
 function productListOnNewPage(){
     window.location.href = 'productList.html';
+
+}
+function migrationPage(){
+    window.location.href = 'migrationPage.html';
 
 }
 
@@ -334,7 +340,35 @@ function deleteCustomer(customerId) {
     // Alert the user that the customer has been deleted
     alert('Customer deleted successfully.');
 }
+// Function to copy data to a JSON file
+function copyData() {
+    const data = JSON.stringify(localStorage); // Convert localStorage to JSON string
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'localStorageData.json';
+    a.click();
+    URL.revokeObjectURL(url);
+}
 
+// Function to paste data from a JSON file
+function pasteData(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const contents = e.target.result;
+            const data = JSON.parse(contents);
+            for (const key in data) {
+                localStorage.setItem(key, data[key]); // Restore localStorage data
+            }
+            alert('Data pasted successfully!');
+            window.location.href = 'index.html';
+        };
+        reader.readAsText(file);
+    }
+}
 displayCustomerList();
 
 
