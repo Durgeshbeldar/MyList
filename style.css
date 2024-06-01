@@ -45,6 +45,13 @@ input {
   align-items: center;
 
 }
+.note{
+  font-size: 11px;
+  margin: 5px 15px;
+  text-align: justify;
+  font-weight: 500;
+  color: rgb(192, 4, 4);
+}
 
 .h-img > img{
   height: 30px;
@@ -738,7 +745,7 @@ margin-top: auto;
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #010130;
+  background-color:#010130;
  
 }
 .ih-title{
